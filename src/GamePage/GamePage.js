@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import AnswerButtons from '../AnswerButtons/AnswerButtons.js';
 import Context from '../ContextManagement/Context.js'
-import { idToFrequencyMap, frequencyToNoteMap, noteToFrequencyMap } from '../store.js';
+import { idToFrequencyMap, noteToFrequencyMap, notes } from '../store.js';
 
 class GamePage extends Component {
 
@@ -12,6 +11,21 @@ class GamePage extends Component {
     this.audioContext = new AudioContext();
   }
 
+  makeButton = (note) => {
+    return (
+      <button onClick={this.handleAnswerClick} id={note}>
+        {note}
+      </button>
+    );
+  }
+
+  handleAnswerClick = (event) => {
+    const note = event.target.id
+    if (this.context.currentNote === noteToFrequencyMap[note]) {
+      this.context.incrementScore()
+    }
+  }
+
   playNote = (frequency) => {
     let oscillator = this.audioContext.createOscillator();
     oscillator.connect(this.audioContext.destination);
@@ -20,38 +34,33 @@ class GamePage extends Component {
     oscillator.stop(this.audioContext.currentTime + 1.5)
   }
 
-  handleClick = () => {
-    //let num = Math.floor(Math.random() * 11) + 1;
-    //let frequency = idToFrequencyMap[num]
-    //this.context.setCurrentNote(num);
-    //console.log(frequency)
-
-    //this.playNote(frequency);
+  handlePlayButtonClick = (event) => {
     this.playNote(this.context.currentNote)
   }
 
   generateRandomNote = () => {
     const num = Math.floor(Math.random() * 11) + 1;
     const frequency = idToFrequencyMap[num]
-    console.log(frequency)
     return frequency
+  }
+
+  handleNextButtonClick = (event) => {
+    this.context.setCurrentNote(this.generateRandomNote())
+    this.context.incrementProgress()
   }
 
   render() {
     return (
       <>
-        <h1>Game Screen</h1>
-        <button onClick={this.handleClick}>Play Sound</button>
+        <h2>Progress: {this.context.progress}/20</h2>
+        <h2>Correct: {this.context.score}/20</h2>
+        <button id="playNoteButton" onClick={this.handlePlayButtonClick}>Play Sound</button>
         <br></br>
-        <AnswerButtons></AnswerButtons>
+        {notes.map(this.makeButton)}
         <br></br>
-        <Context.Consumer>
-          {({ currentNote, setCurrentNote }) => (
-            <button onClick={() => setCurrentNote(this.generateRandomNote())}>
-              Switch Note (Current: {currentNote})
-          </button>
-          )}
-        </Context.Consumer>
+        <button id="nextButton" onClick={this.handleNextButtonClick}>
+          Switch Note
+        </button>
 
       </>
     );

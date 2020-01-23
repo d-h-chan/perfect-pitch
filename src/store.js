@@ -5,14 +5,14 @@ const idToFrequencyMap = {
   4: 293.6648, // "D",
   5: 349.2282, //"F",
   6: 440.0000,// "A",
-  7: 293.6648,// "B",
+  7: 493.8833,// "B",
   8: 277.1826,// "C#/Db",
   9: 311.1270,// "D#/Eb",
   10: 369.9944, // "F#/Gb",
   11: 415.3047, // "G#/Ab",
-  12: 261.6256,// "A#/Bb",
+  12: 466.1638,// "A#/Bb",
 }
-
+/*
 const frequencyToNoteMap = {
   261.6256: "C",
   277.1826: "C#/Db",
@@ -24,9 +24,9 @@ const frequencyToNoteMap = {
   391.9954: "G",
   415.3047: "G#/Ab",
   440.0000: "A",
-  261.6256: "A#/Bb",
-  293.6648: "B",
-}
+  466.1638: "A#/Bb",
+  493.8833: "B",
+}*/
 
 const noteToFrequencyMap = {
   "C": 261.6256,
@@ -39,8 +39,10 @@ const noteToFrequencyMap = {
   "G": 391.9954, 
   "G#/Ab": 415.3047,
   "A": 440.0000, 
-  "A#/Bb": 261.6256, 
-  "B": 293.6648,
+  "A#/Bb": 466.1638, 
+  "B": 493.8833,
 }
 
-export {idToFrequencyMap, frequencyToNoteMap, noteToFrequencyMap};
+const notes=["C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B"]
+
+export {idToFrequencyMap, noteToFrequencyMap, notes};
