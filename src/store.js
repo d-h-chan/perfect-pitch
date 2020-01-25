@@ -12,21 +12,22 @@ const idToFrequencyMap = {
   11: 415.3047, // "G#/Ab",
   12: 466.1638,// "A#/Bb",
 }
-/*
-const frequencyToNoteMap = {
-  261.6256: "C",
-  277.1826: "C#/Db",
-  293.6648: "D",
-  311.1270: "D#/Eb",
-  329.6276: "E",
-  349.2282: "F",
-  369.9944: "F#/Gb",
-  391.9954: "G",
-  415.3047: "G#/Ab",
-  440.0000: "A",
-  466.1638: "A#/Bb",
-  493.8833: "B",
-}*/
+
+
+const noteToIdMap = {
+  "C": 1,
+  "C#/Db": 8,
+  "D": 4,
+  "D#/Eb": 9, 
+  "E": 2,
+  "F": 5, 
+  "F#/Gb": 10, 
+  "G": 3, 
+  "G#/Ab": 11,
+  "A": 6, 
+  "A#/Bb": 12, 
+  "B": 7,
+}
 
 const noteToFrequencyMap = {
   "C": 261.6256,
@@ -45,4 +46,11 @@ const noteToFrequencyMap = {
 
 const notes=["C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B"]
 
-export {idToFrequencyMap, noteToFrequencyMap, notes};
+const DifficultyEnum = {EASY:3, MEDIUM:7, HARD:12}
+Object.freeze(DifficultyEnum)
+
+const gameLength = 20
+
+const audioDuration = 1.5
+
+export {idToFrequencyMap, noteToFrequencyMap, noteToIdMap, notes, DifficultyEnum, gameLength, audioDuration};

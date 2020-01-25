@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 //set the defaults
 const Context = React.createContext({
@@ -7,7 +7,9 @@ const Context = React.createContext({
   //progress: 1,
   incrementProgress: () => {},
   //score: 0,
-  incrementScore: () => {}
+  incrementScore: () => {},
+  addScore: () => {},
+  setDifficulty: () => {}
 });
 
 export default Context;
