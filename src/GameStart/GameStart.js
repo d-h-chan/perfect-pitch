@@ -10,6 +10,7 @@ class GameStart extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     //set score and progress to base values
+    this.context.resetGame()
     this.props.history.push('/game')
   }
 

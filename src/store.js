@@ -49,8 +49,8 @@ const notes=["C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "
 const DifficultyEnum = {EASY:3, MEDIUM:7, HARD:12}
 Object.freeze(DifficultyEnum)
 
-const gameLength = 20
+const gameLength = 5
 
-const audioDuration = 1.5
+const audioDuration = 0.75
 
 export {idToFrequencyMap, noteToFrequencyMap, noteToIdMap, notes, DifficultyEnum, gameLength, audioDuration};

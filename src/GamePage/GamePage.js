@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router';
 import Context from '../ContextManagement/Context.js'
-import { idToFrequencyMap, noteToFrequencyMap, notes, audioDuration, gameLength, noteToIdMap} from '../store.js';
+import { idToFrequencyMap, notes, audioDuration, gameLength, noteToIdMap} from '../store.js';
 
 class GamePage extends Component {
 
@@ -9,6 +10,7 @@ class GamePage extends Component {
   constructor(props) {
     super(props);
     this.audioContext = new AudioContext();
+    this.state = {isPlayButtonDisabled: false}
   }
 
   makeButton = (note) => {
@@ -25,9 +27,14 @@ class GamePage extends Component {
 
   handleAnswerClick = (event) => {
     const note = event.target.id
-    if (this.context.currentNote === noteToFrequencyMap[note]) {
+    console.log(this.context.currentNote)
+    console.log(note)
+    console.log(idToFrequencyMap[note])
+    if (this.context.currentNote === idToFrequencyMap[note]) {
       this.context.incrementScore()
     }
+    this.context.setCurrentNote(this.context.generateRandomFrequency())
+    this.context.incrementProgress()
   }
 
   playNote = (frequency) => {
@@ -41,20 +48,10 @@ class GamePage extends Component {
 
   handlePlayButtonClick = (event) => {
     this.playNote(this.context.currentNote)
-  }
-
-  generateRandomNote = () => {
-    const num = Math.floor(Math.random() * this.context.difficulty) + 1;
-    console.log(num)
-    const frequency = idToFrequencyMap[num]
-    console.log(frequency)
-
-    return frequency
-  }
-
-  handleNextButtonClick = () => {
-    this.context.setCurrentNote(this.generateRandomNote())
-    this.context.incrementProgress()
+    this.setState({
+      isPlayButtonDisabled: true
+    });
+    setTimeout(() => this.setState({ isPlayButtonDisabled: false }), audioDuration * 1000);
   }
 
   handleSubmit = (event) => {
@@ -63,6 +60,8 @@ class GamePage extends Component {
     this.context.addScore(
       {user: userName, score: this.context.score}
     )
+    this.context.resetGame()
+    this.props.history.push('/leaderboard')
   }
 
   render() {
@@ -72,13 +71,15 @@ class GamePage extends Component {
         {this.context.progress !== gameLength && (
         <>
           <h2>Progress: {this.context.progress}/{gameLength}</h2>
-          <button id="playNoteButton" onClick={this.handlePlayButtonClick}>Play Sound</button>
+          <button 
+            id="playNoteButton" 
+            onClick={this.handlePlayButtonClick}
+            disabled={this.state.isPlayButtonDisabled}>
+            Play Sound
+          </button>
           <br></br>
           {notes.map(this.makeButton)}
           <br></br>
-          <button id="nextButton" onClick={this.handleNextButtonClick}>
-            Switch Note
-          </button>
         </>
         )}
         {this.context.progress === gameLength && (
@@ -93,4 +94,4 @@ class GamePage extends Component {
   }
 }
 
-export default GamePage;
+export default withRouter(GamePage);
