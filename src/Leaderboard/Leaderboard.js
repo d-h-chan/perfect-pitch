@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import Context from '../ContextManagement/Context.js'
+import ScoresApiService from '../services/score-api-service'
+import { DifficultyEnum } from '../store.js';
 
 class Leaderboard extends Component {
+
+  componentDidMount() {
+    //this.context.clearError()
+    ScoresApiService.getScores()
+      .then(this.context.setScores)
+      .then(console.log(this.context.scores))
+    //  .catch(this.context.setError)
+  }
 
   static contextType = Context;
 
@@ -13,6 +23,9 @@ class Leaderboard extends Component {
         </td>
         <td>
           {item.score}
+        </td>
+        <td>
+          {item.difficulty}
         </td>
       </tr>
     );
@@ -27,10 +40,13 @@ class Leaderboard extends Component {
             <tr>
               <th>User</th>
               <th>Score</th>
+              <th>Difficulty</th>
             </tr>
           </thead>
           <tbody>
-            {this.context.scores.map(this.makeTable)}
+            {this.context.scores
+            .filter(score => score.difficulty === this.context.difficulty.string)
+            .map(this.makeTable)}
           </tbody>
         </table>
       </>

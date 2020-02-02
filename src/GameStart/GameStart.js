@@ -15,7 +15,9 @@ class GameStart extends Component {
   }
 
   handleChange = (event) => {
-    this.context.setDifficulty(event.target.value)
+    console.log(event.target.value)
+    console.log(DifficultyEnum[event.target.value])
+    this.context.setDifficulty(DifficultyEnum[event.target.value])
   }
 
   render() {
@@ -24,9 +26,9 @@ class GameStart extends Component {
         <form onSubmit={this.handleSubmit}>
           <button type="submit">Start Game</button>
           <select value={this.context.difficulty} onChange={this.handleChange} id="difficultySelect">
-            <option value={DifficultyEnum.EASY}>Easy</option>
-            <option value={DifficultyEnum.MEDIUM}>Medium</option>
-            <option value={DifficultyEnum.HARD}>Hard</option>
+            <option value={"EASY"}>Easy</option>
+            <option value={"MEDIUM"}>Medium</option>
+            <option value={"HARD"}>Hard</option>
           </select>
         </form>
       </>

@@ -19,7 +19,7 @@ class GamePage extends Component {
       onClick={this.handleAnswerClick} 
       id={noteToIdMap[note]} 
       key={note}
-      disabled={noteToIdMap[note] > this.context.difficulty}>
+      disabled={noteToIdMap[note] > this.context.difficulty.value}>
         {note}
       </button>
     );

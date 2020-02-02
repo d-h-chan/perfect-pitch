@@ -21,6 +21,10 @@ class App extends Component {
     this.setState({ score: this.state.score + 1 })
   }
 
+  setScores = (scores) => {
+    this.setState({ scores })
+  }
+
   addScore = (score) => {
     let scores = this.state.scores.concat(score);
     this.setState({ scores })
@@ -31,7 +35,7 @@ class App extends Component {
   }
 
   generateRandomFrequency = () => {
-    const num = Math.floor(Math.random() * this.state.difficulty) + 1;
+    const num = Math.floor(Math.random() * this.state.difficulty.value) + 1;
     const frequency = idToFrequencyMap[num]
     return frequency
   }
@@ -47,21 +51,14 @@ class App extends Component {
     incrementProgress: this.incrementProgress,
     score: 0,
     incrementScore: this.incrementScore,
-    scores: [
-      {
-        user: "aaa",
-        score: 20
-      },
-      {
-        user: "bbb",
-        score: 5
-      },
-    ],
+    scores: [],
+    //might not need addScore anymore
     addScore: this.addScore,
     difficulty: DifficultyEnum.EASY,
     setDifficulty: this.setDifficulty,
     generateRandomFrequency: this.generateRandomFrequency,
-    resetGame: this.resetGame
+    resetGame: this.resetGame,
+    setScores: this.setScores
   };
 
   render() {

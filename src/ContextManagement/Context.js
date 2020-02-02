@@ -9,6 +9,7 @@ const Context = React.createContext({
   //score: 0,
   incrementScore: () => {},
   addScore: () => {},
+  setScores: () => {},
   setDifficulty: () => {},
   generateRandomFrequency: () => {},
   resetGame: () => {}
