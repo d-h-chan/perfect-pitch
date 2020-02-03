@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router';
 import Context from '../ContextManagement/Context.js'
+import ScoresApiService from '../services/score-api-service'
 import { idToFrequencyMap, notes, audioDuration, gameLength, noteToIdMap} from '../store.js';
 
 class GamePage extends Component {
@@ -27,9 +28,6 @@ class GamePage extends Component {
 
   handleAnswerClick = (event) => {
     const note = event.target.id
-    console.log(this.context.currentNote)
-    console.log(note)
-    console.log(idToFrequencyMap[note])
     if (this.context.currentNote === idToFrequencyMap[note]) {
       this.context.incrementScore()
     }
@@ -40,7 +38,6 @@ class GamePage extends Component {
   playNote = (frequency) => {
     let oscillator = this.audioContext.createOscillator();
     oscillator.connect(this.audioContext.destination);
-    console.log(frequency)
     oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime); // value in hertz
     oscillator.start(this.audioContext.currentTime)
     oscillator.stop(this.audioContext.currentTime + audioDuration)
@@ -57,11 +54,13 @@ class GamePage extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     let userName = event.target.userNameInput.value
-    this.context.addScore(
-      {user: userName, score: this.context.score}
-    )
-    this.context.resetGame()
-    this.props.history.push('/leaderboard')
+    ScoresApiService.postScore(userName, this.context.score, this.context.difficulty.string)
+    .then(() => {
+      this.context.resetGame()
+      this.props.history.push('/leaderboard')
+    })
+    //.catch(this.context.setError)
+    
   }
 
   render() {

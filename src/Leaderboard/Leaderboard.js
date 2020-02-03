@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Context from '../ContextManagement/Context.js'
 import ScoresApiService from '../services/score-api-service'
-import { DifficultyEnum } from '../store.js';
 
 class Leaderboard extends Component {
 
@@ -9,7 +8,6 @@ class Leaderboard extends Component {
     //this.context.clearError()
     ScoresApiService.getScores()
       .then(this.context.setScores)
-      .then(console.log(this.context.scores))
     //  .catch(this.context.setError)
   }
 
