@@ -7,7 +7,7 @@ class InfoPage extends Component {
   render() {
     return (
       <>
-        <h2>Perfect Pitch Trainer</h2>
+        <h1>Perfect Pitch Trainer</h1>
         <GameStart></GameStart>
         <InfoSection></InfoSection>
         <LearningResources></LearningResources>

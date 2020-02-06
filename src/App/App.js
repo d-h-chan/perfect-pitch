@@ -6,6 +6,7 @@ import GamePage from '../GamePage/GamePage.js'
 import Leaderboard from '../Leaderboard/Leaderboard.js'
 import { Link } from 'react-router-dom';
 import { DifficultyEnum, idToFrequencyMap } from '../store.js';
+import './App.css';
 
 class App extends Component {
 
@@ -66,11 +67,10 @@ class App extends Component {
       <main className='App'>
         <Context.Provider value={this.state}>
           <nav>
-            <Link to="/">Home </Link> |
-            <Link to="/leaderboard/"> Leaderboard </Link> |
-            <Link to="/game/"> Game</Link>
+            <Link to="/">Home</Link> |
+            <Link to="/leaderboard/">Leaderboard</Link> |
+            <Link to="/game/">Game</Link>
           </nav>
-          <h1>PERFECT PITCH</h1>
           <Route exact path='/leaderboard' component={Leaderboard} />
           <Route exact path='/game' component={GamePage} />
           <Route exact path='/' component={InfoPage} />

@@ -1,0 +1,41 @@
+body {
+  font-family: "Roboto",
+  sans-serif; 
+  font-size: 20px;
+  color:black;
+  text-align: center;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+h1, h2 {
+  font-family: "Quicksand";
+}
+
+h2 {
+
+}
+
+nav {
+  padding: 1% 0;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+p {
+  text-align: left;
+}
+
+Link {
+  background-color: green;
+}
+
+
