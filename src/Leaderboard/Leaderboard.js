@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Context from '../ContextManagement/Context.js'
 import ScoresApiService from '../services/score-api-service'
+import './Leaderboard.css';
 
 class Leaderboard extends Component {
 

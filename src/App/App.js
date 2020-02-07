@@ -68,8 +68,9 @@ class App extends Component {
         <Context.Provider value={this.state}>
           <nav>
             <Link to="/">Home</Link> |
-            <Link to="/leaderboard/">Leaderboard</Link> |
-            <Link to="/game/">Game</Link>
+            <Link to="/game/">Game</Link> | 
+            <Link to="/leaderboard/">Leaderboard</Link>
+
           </nav>
           <Route exact path='/leaderboard' component={Leaderboard} />
           <Route exact path='/game' component={GamePage} />

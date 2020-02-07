@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router';
 import Context from '../ContextManagement/Context.js'
 import {DifficultyEnum} from '../store.js'
+import './GameStart.css';
 
 class GameStart extends Component {
 
@@ -20,15 +21,15 @@ class GameStart extends Component {
 
   render() {
     return (
-      <><h2>Instructions: </h2>
+      <>
+      <h2 className="gameStartHeader">Instructions: </h2>
       <p>
-        Each turn a pitch will be randomly selected from the difficulty level.
+        Each turn a pitch will be chosen at random.
         Click 'Play Note' to hear it, and click the button of the note you think
-        it is! Click 'Start Game' when you're ready, or click 'reference pitch'
-        to hear a 'C'
+        it is. Select a difficulty and click 'Start Game' when you're ready!
       </p>
         <form onSubmit={this.handleSubmit}>
-          <button type="submit">Start Game</button>
+          <button className="gameStartButton" type="submit">Start Game</button>
           <select value={this.context.difficulty.string.toUpperCase()} onChange={this.handleChange} id="difficultySelect">
             <option value={"EASY"}>Easy (C,E,G)</option>
             <option value={"MEDIUM"}>Medium (C,D,E,F,G,A,B)</option>

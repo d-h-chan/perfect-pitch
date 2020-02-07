@@ -63,8 +63,10 @@ const DifficultyEnum = {
 
 Object.freeze(DifficultyEnum)
 
-const gameLength = 5
+const gameLength = 20
 
 const audioDuration = 0.75
 
-export { idToFrequencyMap, noteToFrequencyMap, noteToIdMap, notes, DifficultyEnum, gameLength, audioDuration };
+const pianoVolume = 0.5
+
+export { idToFrequencyMap, noteToFrequencyMap, noteToIdMap, notes, DifficultyEnum, gameLength, audioDuration, pianoVolume };

@@ -1,3 +1,9 @@
+.gameHeader {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
 .circle {
   width: 200px;
   height: 200px;
@@ -7,7 +13,7 @@
   position: absolute;
   border-radius: 50%;
   left: 50%;
-  top: 50%;
+  top: 275px;
   margin-left: -20px;
   margin-top: 20px;
   width: 45px;
@@ -22,7 +28,7 @@
   position: absolute;
   border-radius: 50%;
   left: 50%;
-  top: 50%;
+  top: 275px;
   margin-left: -47.5px;
   margin-top: -10px;
   width: 100px;
@@ -84,4 +90,8 @@
 
 .circle .note:disabled {
   background: gainsboro;
+}
+
+.circle .note:hover:enabled {
+  box-shadow: 0 0 15px rgba(145, 92, 182, .4);
 }

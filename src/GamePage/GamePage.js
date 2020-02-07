@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import Context from '../ContextManagement/Context.js'
 import ScoresApiService from '../services/score-api-service'
-import { idToFrequencyMap, notes, audioDuration, gameLength, noteToIdMap } from '../store.js';
+import { idToFrequencyMap, notes, audioDuration, gameLength, noteToIdMap, pianoVolume } from '../store.js';
 import './GamePage.css';
 
 class GamePage extends Component {
@@ -43,6 +43,10 @@ class GamePage extends Component {
 
     this.context.setCurrentNote(this.context.generateRandomFrequency())
     this.context.incrementProgress()
+    let audio = new Audio(`/audio/${note}.mp3`);
+    audio.volume = pianoVolume;
+    audio.play();
+
   }
 
   playNote = (frequency) => {
@@ -66,6 +70,7 @@ class GamePage extends Component {
     let userName = event.target.userNameInput.value
     ScoresApiService.postScore(userName, this.context.score, this.context.difficulty.string)
       .then(() => {
+        console.log("pushed leaderboard")
         this.context.resetGame()
         this.props.history.push('/leaderboard')
       })
@@ -76,10 +81,11 @@ class GamePage extends Component {
   render() {
     return (
       <>
-        <h2>Correct: {this.context.score}/{gameLength}</h2>
+        <h2 className="gameHeader">Correct: {this.context.score}</h2>
+        <br></br>
         {this.context.progress !== gameLength && (
           <>
-            <h2>Progress: {this.context.progress}/{gameLength}</h2>
+            <h2 className="gameHeader">Progress: {this.context.progress}/{gameLength}</h2>
             <button
               id="playNoteButton"
               onClick={this.handlePlayButtonClick}
@@ -92,11 +98,13 @@ class GamePage extends Component {
           </>
         )}
         {this.context.progress === gameLength && (
-          <form onSubmit={this.handleSubmit}>
-            UserName
+          <>
+            <form onSubmit={this.handleSubmit}>
+              UserName
             <input id="userNameInput" name="userNameInput"></input>
-            <button type="submit">Submit</button>
-          </form>
+              <button type="submit">Submit</button>
+            </form>
+          </>
         )}
       </>
     );
