@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import Context from '../ContextManagement/Context.js'
 import ScoresApiService from '../services/score-api-service'
-import { idToFrequencyMap, notes, audioDuration, gameLength, noteToIdMap, pianoVolume } from '../store.js';
+import {notes, gameLength, noteToIdMap, pianoVolume } from '../store.js';
 import './GamePage.css';
 
 class GamePage extends Component {
@@ -37,32 +37,24 @@ class GamePage extends Component {
 
   handleAnswerClick = (event) => {
     const note = event.target.id
-    if (this.context.currentNote === idToFrequencyMap[note]) {
+    console.log(typeof(note))
+    console.log(typeof(this.context.currentNote))
+    if (this.context.currentNote.toString() === note) {
       this.context.incrementScore()
     }
-
-    this.context.setCurrentNote(this.context.generateRandomFrequency())
+    this.context.setCurrentNote(this.context.generateRandomNote())
     this.context.incrementProgress()
+    this.playNote(note)
+  }
+
+  playNote = (note) => {
     let audio = new Audio(`/audio/${note}.mp3`);
     audio.volume = pianoVolume;
     audio.play();
-
-  }
-
-  playNote = (frequency) => {
-    let oscillator = this.audioContext.createOscillator();
-    oscillator.connect(this.audioContext.destination);
-    oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime); // value in hertz
-    oscillator.start(this.audioContext.currentTime)
-    oscillator.stop(this.audioContext.currentTime + audioDuration)
   }
 
   handlePlayButtonClick = (event) => {
     this.playNote(this.context.currentNote)
-    this.setState({
-      isPlayButtonDisabled: true
-    });
-    setTimeout(() => this.setState({ isPlayButtonDisabled: false }), audioDuration * 1000);
   }
 
   handleSubmit = (event) => {
@@ -70,12 +62,10 @@ class GamePage extends Component {
     let userName = event.target.userNameInput.value
     ScoresApiService.postScore(userName, this.context.score, this.context.difficulty.string)
       .then(() => {
-        console.log("pushed leaderboard")
         this.context.resetGame()
         this.props.history.push('/leaderboard')
       })
     //.catch(this.context.setError)
-
   }
 
   render() {
