@@ -11,6 +11,7 @@ class GamePage extends Component {
 
   constructor(props) {
     super(props);
+    let AudioContext = window.AudioContext || window.webkitAudioContext; 
     this.audioContext = new AudioContext();
     this.state = { isPlayButtonDisabled: false }
   }
@@ -37,16 +38,17 @@ class GamePage extends Component {
 
   handleAnswerClick = (event) => {
     const note = event.target.id
+
+    let audio = new Audio(`/audio/${note}.mp3`);
+    audio.volume = pianoVolume;
+    audio.play();
+
     if (this.context.currentNote === idToFrequencyMap[note]) {
       this.context.incrementScore()
     }
 
     this.context.setCurrentNote(this.context.generateRandomFrequency())
     this.context.incrementProgress()
-    let audio = new Audio(`/audio/${note}.mp3`);
-    audio.volume = pianoVolume;
-    audio.play();
-
   }
 
   playNote = (frequency) => {

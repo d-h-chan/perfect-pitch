@@ -67,6 +67,6 @@ const gameLength = 20
 
 const audioDuration = 0.75
 
-const pianoVolume = 0.5
+const pianoVolume = 0.7
 
 export { idToFrequencyMap, noteToFrequencyMap, noteToIdMap, notes, DifficultyEnum, gameLength, audioDuration, pianoVolume };

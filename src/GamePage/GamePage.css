@@ -92,6 +92,6 @@
   background: gainsboro;
 }
 
-.circle .note:hover:enabled {
+.circle .note:hover:enabled, #playNoteButton:hover {
   box-shadow: 0 0 15px rgba(145, 92, 182, .4);
 }
