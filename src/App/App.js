@@ -5,7 +5,7 @@ import InfoPage from '../InfoPage/InfoPage.js'
 import GamePage from '../GamePage/GamePage.js'
 import Leaderboard from '../Leaderboard/Leaderboard.js'
 import { Link } from 'react-router-dom';
-import { DifficultyEnum } from '../store.js';
+import { DifficultyEnum, idToFrequencyMap } from '../store.js';
 import './App.css';
 
 class App extends Component {
@@ -26,30 +26,38 @@ class App extends Component {
     this.setState({ scores })
   }
 
+  addScore = (score) => {
+    let scores = this.state.scores.concat(score);
+    this.setState({ scores })
+  }
+
   setDifficulty = (difficulty) => {
     this.setState({difficulty})
   }
 
-  generateRandomNote = () => {
-    const note = Math.floor(Math.random() * this.state.difficulty.value) + 1;
-    return note
+  generateRandomFrequency = () => {
+    const num = Math.floor(Math.random() * this.state.difficulty.value) + 1;
+    const frequency = idToFrequencyMap[num]
+    return frequency
   }
 
   resetGame = () => {
-    this.setState({progress: 0, score: 0, currentNote: this.generateRandomNote()})
+    this.setState({progress: 0, score: 0, currentNote: this.generateRandomFrequency()})
   }
 
   state = {
-    currentNote: 1,
+    currentNote: 261.6256,
     setCurrentNote: this.setCurrentNote,
     progress: 0,
     incrementProgress: this.incrementProgress,
     score: 0,
     incrementScore: this.incrementScore,
     scores: [],
+    //might not need addScore anymore
+    addScore: this.addScore,
     difficulty: DifficultyEnum.EASY,
     setDifficulty: this.setDifficulty,
-    generateRandomNote: this.generateRandomNote,
+    generateRandomFrequency: this.generateRandomFrequency,
     resetGame: this.resetGame,
     setScores: this.setScores
   };
