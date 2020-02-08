@@ -29,12 +29,12 @@ class GameStart extends Component {
         it is. Select a difficulty and click 'Start' when you're ready!
       </p>
         <form onSubmit={this.handleSubmit}>
-          <button className="gameStartButton" type="submit">Start</button>
           <select className="gameStartSelect"value={this.context.difficulty.string.toUpperCase()} onChange={this.handleChange} id="difficultySelect">
             <option value={"EASY"}>Easy (C,E,G)</option>
             <option value={"MEDIUM"}>Medium (C,D,E,F,G,A,B)</option>
             <option value={"HARD"}>Hard (All Notes)</option>
           </select>
+          <button className="gameStartButton" type="submit">Start</button>
         </form>
       </>
     );

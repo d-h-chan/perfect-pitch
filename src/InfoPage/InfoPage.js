@@ -9,7 +9,9 @@ class InfoPage extends Component {
       <>
         <h1>Perfect Pitch Trainer</h1>
         <GameStart></GameStart>
+        <hr></hr>
         <InfoSection></InfoSection>
+        <hr></hr>
         <LearningResources></LearningResources>
       </>
     );
