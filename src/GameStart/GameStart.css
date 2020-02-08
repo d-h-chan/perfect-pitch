@@ -3,3 +3,22 @@
 }
 
 
+.gameStartButton {
+  background-color: dodgerblue;
+  border: none;
+  font-size: 20px;
+  font-family: Quicksand;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 20px;
+  margin: 0 10px;
+}
+
+.gameStartSelect {
+  font-size: 20px;
+  height: 35px;
+}
+
+.gameStartButton:hover {
+  box-shadow: 0 0 15px rgba(145, 92, 182, .4);
+}

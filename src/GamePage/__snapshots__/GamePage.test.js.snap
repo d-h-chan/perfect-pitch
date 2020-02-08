@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a .Note by default 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
+
+exports[`renders without errors 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;

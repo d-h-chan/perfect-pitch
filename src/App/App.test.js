@@ -1,14 +1,15 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
-import { exportAllDeclaration } from '@babel/types';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
+import App from './App'
 
-/*test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/PERFECT PITCH/i);
-  expect(linkElement).toBeInTheDocument();
-});*/
-
-test('renders', () => {
-  
-});
+it('renders without crashing', () => {
+  const div = document.createElement('div')
+  ReactDOM.render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+    div
+  )
+  ReactDOM.unmountComponentAtNode(div)
+})

@@ -26,11 +26,11 @@ class GameStart extends Component {
       <p>
         Each turn a pitch will be chosen at random.
         Click 'Play Note' to hear it, and click the button of the note you think
-        it is. Select a difficulty and click 'Start Game' when you're ready!
+        it is. Select a difficulty and click 'Start' when you're ready!
       </p>
         <form onSubmit={this.handleSubmit}>
-          <button className="gameStartButton" type="submit">Start Game</button>
-          <select value={this.context.difficulty.string.toUpperCase()} onChange={this.handleChange} id="difficultySelect">
+          <button className="gameStartButton" type="submit">Start</button>
+          <select className="gameStartSelect"value={this.context.difficulty.string.toUpperCase()} onChange={this.handleChange} id="difficultySelect">
             <option value={"EASY"}>Easy (C,E,G)</option>
             <option value={"MEDIUM"}>Medium (C,D,E,F,G,A,B)</option>
             <option value={"HARD"}>Hard (All Notes)</option>
