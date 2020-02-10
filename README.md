@@ -1,4 +1,17 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Perfect Pitch Trainer:
+Live app: https://perfect-pitch-app.now.sh/game
+
+### Summary:
+Perfect Pitch Trainer is an application that will let the user test and train their sense of musical pitch. Includes instructions, the training tool, a leaderboard for the user to enter their score if they wish, and additional training and learning resources
+
+### Screenshots:
+![Info Screen](https://user-images.githubusercontent.com/55512143/74093923-904c8700-4a8d-11ea-851c-c6f4af6b922b.png)
+![Game Screen](https://user-images.githubusercontent.com/55512143/74093906-6f843180-4a8d-11ea-9d09-5b66b046b1a1.png)
+
+### Technology:
+HTML, CSS, Javascript, React, Enzyme, Node, Cors, Dotenv, Express, Helmet, Morgan, Pg, Xss
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
 
 ## Available Scripts
 
